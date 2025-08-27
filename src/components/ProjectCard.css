@@ -1,0 +1,71 @@
+.project-card {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  top: 10px;
+  padding: 0; /* No padding on the card itself, elements inside will manage their own spacing */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space for title and button */
+  align-items: flex-start;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  color: #f0f0f0;
+  height: 350px; /* Increased fixed height for bigger cards */
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Remove image specific styles */
+.project-card img {
+  display: block; /* Ensure image is block level */
+  width: 100%; /* Full width */
+  height: 175px; /* Half of the new 350px card height */
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  border-top-left-radius: 10px; /* Match card border radius */
+  border-top-right-radius: 10px; /* Match card border radius */
+  margin-bottom: 0.75rem; /* Space between image and title */
+}
+
+.project-card h3 {
+  font-size: 1.4rem; /* Smaller font size for title */
+  margin-top: 1rem; /* Space below the image */
+  margin-bottom: 0.75rem; /* Space between title and button */
+  color: #a855f7;
+  text-align: left;
+  line-height: 1.2;
+  min-height: auto; /* Allow title to adjust its height */
+  padding: 0 1.5rem; /* Keep horizontal padding */
+}
+
+/* Remove the description paragraph styles as it's no longer used */
+.project-card p {
+  display: none;
+}
+
+.project-card-link {
+  display: inline-block;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: auto; /* Push button reliably to the bottom */
+  align-self: flex-start;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem; /* Consistent bottom padding for the button */
+}
+
+.project-card-link:hover {
+  background: linear-gradient(to right, #ec4899, #f97316);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}

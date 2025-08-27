@@ -1,0 +1,71 @@
+.navbar {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: space-between; /* Space out logo, spacer, and nav list */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #a855f7, #ec4899, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* color: transparent; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid;
+  /* border-image: white 1;
+  border-image-slice: 1; */
+  color: white;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0 auto; /* Center the navigation list within available space */
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-link {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  position: relative; /* Needed for the underline pseudo-element */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  width: 0; /* Starts hidden */
+  height: 2px; /* Height of the underline */
+  background: linear-gradient(to right, #a855f7, #ec4899); /* Gradient underline */
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease; /* Animation for width */
+}
+
+.navbar-link:hover::after {
+  width: 100%; /* Expands to full width on hover */
+}
+
+.navbar-link:hover {
+  color: #a855f7; /* Change text color on hover */
+  transform: translateY(-2px);
+}

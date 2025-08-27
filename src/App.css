@@ -1,0 +1,517 @@
+.page-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+
+  color: #f0f0f0;
+  /* Remove slideInFromLeft animation for contact-like fade-in */
+  opacity: 1;
+  margin-top: 0;
+  transform: none;
+  animation-delay: 0.6s;
+  position: relative;
+  z-index: 1;
+}
+
+.page-section.section-hero {
+  
+  /* The rest of your hero section styles */
+  background-color: #1a1a1a;
+  position: relative;
+  z-index: 1;
+}
+
+.page-section.section-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Removed .page-section.section-hero::before pseudo-element */
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  perspective: 1000px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.profile-picture-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 25px;
+  border: 4px solid #f0f0f0;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards 0.3s; /* Adjusted delay */
+  transition: all 0.5s ease; /* Smoother transition for more advanced effect */
+  transform-style: preserve-3d; /* Preserve 3D space for children */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: #1a1a1a;
+  position: relative; /* Create stacking context for children */
+}
+
+.profile-picture-container:hover {
+  transform: scale(1.05); /* Slightly scale up on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Add a more pronounced shadow */
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden; /* Prevent backface from showing during rotation */
+  border-radius: 50%;
+  position: relative;
+  z-index: 2; /* Ensure image sits above animated border */
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin: 0;
+  line-height: 1.2;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.hero-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  border-radius: 2px;
+}
+
+.hero-name-gradient {
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 1rem 0 2rem 0;
+  color: #f0f0f0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.hero-description:hover {
+  transform: none; /* Remove 3D transform */
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards 1.2s; /* Adjusted delay */
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-8px) scale(1.05); /* Enhanced lift and scale */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6); /* More pronounced shadow */
+  background: linear-gradient(to right, #ec4899, #f97316);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #f0f0f0;
+  border: 2px solid #f0f0f0;
+}
+
+.btn-secondary:hover {
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+  transform: translateY(-8px) scale(1.05); /* Enhanced lift and scale */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  animation-delay: 0.6s;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  max-width: 800px;
+}
+
+.contact-content {
+  display: flex;
+  margin-top: 15px;
+  flex-direction: column;
+  animation-delay: 0.6s;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 800px; /* Increase max-width for content */
+  animation: slideInFromLeft 0.7s ease-out forwards;
+  transition: transform 0.1s ease, box-shadow 0.4s ease; /* Add transition */
+}
+
+.contact-title {
+  font-size: 3rem; /* Match skills title font size */
+  color: #f0f0f0; /* Match skills title color */
+  margin-top: 50px; /* Adjust top margin for visual balance */
+  margin-bottom: 1rem; /* Match skills title margin-bottom */
+  position: relative; /* Required for ::after pseudo-element */
+  padding-bottom: 0.5rem; /* Required for ::after pseudo-element */
+  /* Remove previous gradient text and hover effects */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  color: white; /* Ensure text is visible after unsetting text-fill-color */
+  font-weight: bold; /* Keep the text bolder */
+  letter-spacing: normal; /* Remove letter spacing */
+  transition: none; /* Remove transition */
+  text-shadow: none; /* Remove text-shadow */
+}
+
+.contact-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #a855f7, #ec4899); /* Keep gradient underline */
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .contact-title {
+    font-size: 2.5rem; /* Adjust font size for smaller screens */
+    margin-top: 30px;
+  }
+}
+
+.contact-description {
+  font-size: 1.1rem; /* Larger description */
+  max-width: none; /* Remove max-width */
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  gap: 1.5rem; /* Slightly reduced gap between form groups for a tighter look */
+  width: 100%;
+  max-width: 500px;
+  background-color: #1a1a1a; /* Match page background for a seamless look */
+  padding: 2rem; /* Adjusted padding */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: none; /* Remove subtle outline for a cleaner look */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem; /* Closer to input */
+  color: #f0f0f0; /* Changed to pure white for better contrast */
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.8rem; /* Uniform padding */
+  border-radius: 5px; /* Slightly more rounded corners */
+  border: 1px solid #333; /* Darker border, matching image more closely */
+  background-color: #2a2a2a; /* Slightly darker background for inputs, matching image */
+  color: #f0f0f0;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  height: auto; /* Ensure full width */
+  min-height: auto; /* Explicit height for consistency across inputs */
+  resize: none; /* Allow vertical resizing */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #a855f7; /* Purple border on focus */
+  box-shadow: none; /* Softer, wider glowing effect */
+}
+
+/* Adjust placeholder color */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: inherit; /* Softer placeholder text color, more visible */
+}
+
+.contact-form .btn-primary {
+  align-self: flex-start; /* Center the button */
+  margin-top: 1rem; /* Increased space above button */
+  padding: 0.8rem 1.5rem; /* Larger button */
+  font-size: 1rem;
+  border-radius: 5px; /* Slightly more rounded */
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form .btn-primary:hover {
+  transform: translateY(-5px); /* Lift and slightly scale on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+  background: linear-gradient(to right, #ec4899, #f97316); /* Change gradient on hover */
+}
+
+/* Add some overall form enhancements */
+.contact-form {
+  border: 1px solid #333; /* A subtle outline for the form card */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* More depth */
+}
+
+.contact-content {
+  padding: inherit; /* Revert padding */
+  max-width: 800px; /* Revert max-width */
+}
+
+.contact-title {
+  font-size: 2.5rem; /* Larger title */
+  margin-top: 90px;
+  text-shadow: none; /* Remove text shadow */
+}
+
+.contact-description {
+  font-size: 1.1rem; /* Larger description */
+  margin-top: -10px;
+  max-width: none; /* Constrain description width */
+}
+
+.contact-form {
+  gap: 1.8rem; /* Slightly reduced gap between form groups for a tighter look */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .contact-content {
+    padding: inherit;
+    max-width: inherit;
+  }
+
+  .contact-form {
+    padding: inherit;
+    max-width: inherit;
+    gap: inherit;
+  }
+
+  .contact-title {
+    font-size: inherit;
+  }
+
+  .contact-description {
+    font-size: inherit;
+  }
+
+  .contact-form .btn-primary {
+    padding: inherit;
+    font-size: inherit;
+  }
+}
+
+.animated-text {
+  opacity: 0;
+  animation: fadeInText 1s ease-out forwards;
+}
+
+.animated-text.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.animated-text.delay-2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.project-card-animated {
+  opacity: 0;
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.page-section.section-projects {
+  background-color: #1a1a1a;
+  animation-delay: 0.6s;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem; /* Adjusted padding for spacing around the section */
+}
+
+.projects-title {
+  top: -15px;
+  font-size: 3rem;
+  color: #f0f0f0;
+  margin-top: 50px;
+  margin-bottom: 2.5rem; /* Increased margin for spacing */
+  position: relative;
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+  letter-spacing: normal;
+  text-shadow: none;
+}
+
+.projects-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .projects-title {
+    font-size: 2.5rem;
+    margin-top: 30px;
+    margin-bottom: 2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+    padding: 0 0.5rem; /* Adjusted padding for smaller screens */
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Auto-fit with smaller min-width for flexibility */
+  gap: 1.8rem; /* Slightly increased gap for better separation */
+  max-width: 1000px; /* Max-width to constrain the grid */
+  width: 100%;
+  padding: 0 1rem;
+}
+
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+    padding: 0 0.5rem;
+  }
+}
+
+.profile-picture-outer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 160px;
+  height: 160px;
+}
+
+.profile-animated-border {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 160px;
+  height: 160px;
+  /* color: #a855f7; */
+  
+  border: 5px solid;
+  border-radius: 50%;
+  border-image: linear-gradient(#a855f7, #ec4899, #f97316, #a855f7) 1;
+  box-sizing: border-box;
+  z-index: 1; /* Keep below the image but above background */
+  pointer-events: none;
+  /* transform: translate(-50%, -50%); */
+}

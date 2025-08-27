@@ -1,0 +1,48 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #f0f0f0;
+  background-color: #121212;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Use border-box to stabilize sizing across zoom levels */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+  background-color: transparent; /* Makes the track area transparent */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #000; /* Sets the color of the thumb to black */
+  border-radius: 0; /* Removes the default rounded corners */
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #f0f0f0;
+  background: linear-gradient(-45deg, #121212, #2a2a3a, #121212, #0a0a1a);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  overflow-x: hidden; /* Prevent horizontal scroll caused by subpixel at different zooms */
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
