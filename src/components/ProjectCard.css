@@ -44,9 +44,17 @@
   padding: 0 1.5rem; /* Keep horizontal padding */
 }
 
-/* Remove the description paragraph styles as it's no longer used */
-.project-card p {
-  display: none;
+.project-card-description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #b8b8b8;
+  text-align: left;
+  padding: 0 1.5rem;
+  margin: 0 0 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-card-link {
