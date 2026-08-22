@@ -1,55 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
+
+const links = [
+  { to: '/', label: 'Home' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/experience', label: 'Experience' },
+  { to: '/skills', label: 'Skills' },
+  { to: '/contact', label: 'Contact' },
+];
 
 const Navbar = () => {
   return (
-    <nav
-      className="navbar"
-    >
-      <div className="navbar-logo">A</div>
+    <nav className="navbar">
+      <Link to="/" className="navbar-logo" aria-label="Home">A</Link>
       <div></div> {/* Restored for spacing and centering */}
       <ul className="navbar-list">
-        <li>
-          <Link
-            to="/"
-            className="navbar-link"
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/projects"
-            className="navbar-link"
-          >
-            Projects
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/experience"
-            className="navbar-link"
-          >
-            Experience
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/skills"
-            className="navbar-link"
-          >
-            Skills
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/contact"
-            className="navbar-link"
-          >
-            Contact
-          </Link>
-        </li>
+        {links.map((link) => (
+          <li key={link.to}>
+            <NavLink
+              to={link.to}
+              end={link.to === '/'}
+              className={({ isActive }) =>
+                isActive ? 'navbar-link navbar-link-active' : 'navbar-link'
+              }
+            >
+              {link.label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

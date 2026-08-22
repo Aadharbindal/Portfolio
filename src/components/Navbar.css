@@ -69,3 +69,53 @@
   color: #a855f7; /* Change text color on hover */
   transform: translateY(-2px);
 }
+
+/* Keep the nav usable on small screens: the links overflowed the viewport
+   at 375px, cutting off the last items. */
+@media (max-width: 820px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .navbar-logo {
+    width: 42px;
+    height: 42px;
+    font-size: 2rem;
+  }
+
+  .navbar-list {
+    margin: 0;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-link {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-list {
+    gap: 0.85rem;
+  }
+
+  .navbar-link {
+    font-size: 0.95rem;
+  }
+}
+
+/* Current route indicator */
+.navbar-link-active {
+  color: #a855f7;
+}
+
+.navbar-link-active::after {
+  width: 100%;
+}
+
+.navbar-logo {
+  text-decoration: none;
+}

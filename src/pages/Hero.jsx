@@ -30,7 +30,7 @@ const Hero = () => {
         <div className="hero-buttons">
           <Link to="/contact" className="btn btn-primary">Connect with me</Link>
           <a
-            href="/resume.pdf"
+            href={`${import.meta.env.BASE_URL}resume.pdf`}
             download="Aadhar_Bindal_Resume.pdf"
             className="btn btn-secondary"
           >

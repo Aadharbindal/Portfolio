@@ -1,61 +1,79 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Hero from './pages/Hero';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Skills from './pages/Skills';
 import Certificates from './pages/Certificates';
+import FeaturedProjects from './components/FeaturedProjects';
 import Experience from './pages/Experience';
 import './App.css'
+
+// Each route renders a full-height section, so the browser keeps the previous
+// scroll offset when navigating. Reset it on every route change.
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+const Layout = ({ children }) => (
+  <div className="app">
+    <ScrollToTop />
+    <Navbar />
+    {children}
+    <Footer />
+  </div>
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div className="app">
-        <Navbar />
+      <Layout>
         <Hero />
+        <FeaturedProjects />
         <Certificates />
-      </div>
+      </Layout>
     ),
   },
   {
     path: "/projects",
     element: (
-      <div className="app">
-        <Navbar />
+      <Layout>
         <Projects />
-      </div>
+      </Layout>
     ),
   },
   {
     path: "/experience",
     element: (
-      <div className="app">
-        <Navbar />
+      <Layout>
         <Experience />
-      </div>
+      </Layout>
     ),
   },
   {
     path: "/skills",
     element: (
-      <div className="app">
-        <Navbar />
+      <Layout>
         <Skills />
-      </div>
+      </Layout>
     ),
   },
   {
     path: "/contact",
     element: (
-      <div className="app">
-        <Navbar />
+      <Layout>
         <Contact />
-      </div>
+      </Layout>
     ),
   },
-]);
+], { basename: import.meta.env.BASE_URL });
 
 function App() {
   return (
