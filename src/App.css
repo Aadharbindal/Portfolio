@@ -839,3 +839,9 @@
 .projects-grid {
   align-items: stretch;
 }
+
+/* Where two sections stack, their padding met and doubled the gap. The
+   preceding section's bottom padding is the whole boundary. */
+.page-section + .page-section {
+  padding-top: 0;
+}
