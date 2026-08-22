@@ -169,3 +169,71 @@
     grid-column: 1;
   }
 }
+
+/* ---- Header: single row, everything on one baseline ------------------- */
+.navbar {
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  min-height: var(--nav-h);
+}
+
+.navbar-logo {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  border-color: var(--border);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+  border-color: var(--accent-1);
+  transform: translateY(-1px);
+}
+
+.navbar-list {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: center;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.navbar-list li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  display: inline-block;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-bottom: 3px;
+}
+
+@media (max-width: 820px) {
+  .navbar {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 0.6rem;
+    min-height: 0;
+  }
+
+  .navbar-logo {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+  }
+
+  .navbar-list {
+    grid-row: 2;
+    grid-column: 1;
+  }
+}

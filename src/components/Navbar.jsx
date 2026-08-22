@@ -14,7 +14,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo" aria-label="Home">A</Link>
-      <div></div> {/* Restored for spacing and centering */}
       <ul className="navbar-list">
         {links.map((link) => (
           <li key={link.to}>
