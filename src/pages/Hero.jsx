@@ -12,31 +12,42 @@ const Hero = () => {
             src={profilePicture}
             alt="Aadhar Bindal"
             className="profile-picture"
-            initial={{ z: -200, rotate: 0, opacity: 0, scale: 0 }}
-            animate={{ z: 0, rotate: 0, opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           />
         </div>
+
+        <span className="hero-eyebrow">
+          <span className="hero-eyebrow-dot" />
+          Open to internships and full-time roles
+        </span>
+
         <h1 className="hero-title">
-          I'm <span className="hero-name-gradient">Aadhar Bindal</span>, a software
-          <br />developer based in India.
+          I'm <span className="hero-name-gradient">Aadhar Bindal</span>
         </h1>
-        <p className="hero-description">
-          B.Tech Information Technology student at JECRC, Jaipur. I work across full-stack
-          web development with the MERN stack and low-level systems work in C++ and Linux —
-          most recently building a QEMU-based CXL emulation environment during my internship
-          at Hewlett Packard Enterprise.
+
+        <p className="hero-tagline">
+          Full-stack developer and systems engineer, based in Jaipur, India.
         </p>
+
+        <p className="hero-description">
+          B.Tech Information Technology student at JECRC. I work across full-stack web
+          development with the MERN stack and low-level systems work in C++ and Linux — most
+          recently building a QEMU-based CXL emulation environment at Hewlett Packard Enterprise.
+        </p>
+
         <div className="hero-buttons">
-          <Link to="/contact" className="btn btn-primary">Connect with me</Link>
+          <Link to="/projects" className="btn btn-primary">View my work</Link>
           <a
             href={`${import.meta.env.BASE_URL}resume.pdf`}
             download="Aadhar_Bindal_Resume.pdf"
             className="btn btn-secondary"
           >
-            My resume
+            Download résumé
           </a>
         </div>
+
         <div className="hero-links">
           <a
             href="https://github.com/Aadharbindal"

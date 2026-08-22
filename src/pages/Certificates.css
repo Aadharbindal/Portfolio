@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 1.5rem;
+  padding: var(--space-24) var(--space-6);
 }
 
 .certificates-content {
@@ -17,10 +17,11 @@
 }
 
 .certificates-title {
-  font-size: 3rem;
-  color: #f0f0f0;
-  margin-top: 50px;
-  margin-bottom: 1rem;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.02em;
   position: relative;
   padding-bottom: 0.5rem;
   font-weight: bold;
@@ -39,9 +40,9 @@
 }
 
 .certificates-description {
-  font-size: 1.1rem;
-  color: #c8c8c8;
-  margin-bottom: 2.5rem;
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  margin: var(--space-6) 0 var(--space-12);
 }
 
 .certificates-grid {

@@ -652,3 +652,167 @@
   text-decoration: none;
   display: inline-block;
 }
+
+/* ====================================================================== */
+/*  Refined layout pass: consistent vertical rhythm and hero composition   */
+/* ====================================================================== */
+
+.page-section {
+  padding: var(--space-24) var(--space-6);
+  min-height: auto;
+}
+
+.page-section.section-hero {
+  min-height: 100vh;
+  padding-top: 8rem;
+  padding-bottom: var(--space-16);
+}
+
+/* --- Hero ------------------------------------------------------------- */
+.hero-content {
+  gap: 0;
+  max-width: 720px;
+  margin-top: 0;
+}
+
+.profile-picture-container.profile-picture-outer {
+  width: 132px;
+  height: 132px;
+  margin: 0 0 var(--space-8);
+  border-width: 3px;
+  border-color: var(--border);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+
+.hero-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 5.2vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-4);
+  padding-bottom: 0;
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+/* The hero no longer needs the section-title underline — it competed with
+   the tagline sitting directly beneath it. */
+.hero-title::after {
+  display: none;
+}
+
+.hero-tagline {
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  line-height: 1.4;
+  color: var(--text);
+  margin: 0 0 var(--space-6);
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.hero-description {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 0 var(--space-8);
+  text-shadow: none;
+  text-wrap: pretty;
+}
+
+.hero-buttons {
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.hero-buttons .btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.6rem;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+.hero-links {
+  margin-top: var(--space-8);
+  gap: 0.75rem;
+}
+
+/* --- Shared section headings ------------------------------------------ */
+.projects-title,
+.certificates-title,
+.experience-title,
+.skills-title,
+.contact-title {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  letter-spacing: 0.02em;
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+.experience-title.experience-title-second {
+  margin-top: var(--space-24);
+}
+
+.featured-description,
+.certificates-description,
+.skills-description,
+.contact-description {
+  margin: var(--space-6) 0 var(--space-12);
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.page-section.section-featured,
+.page-section.section-projects,
+.page-section.section-certificates,
+.page-section.section-experience {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-24);
+}
+
+.projects-grid,
+.certificates-grid {
+  max-width: var(--content-width);
+}
+
+.featured-cta {
+  margin-top: var(--space-12);
+}
+
+@media (max-width: 768px) {
+  .page-section {
+    padding: var(--space-16) var(--space-4);
+  }
+
+  .page-section.section-hero {
+    padding-top: 9rem;
+  }
+}
