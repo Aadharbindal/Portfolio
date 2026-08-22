@@ -1,5 +1,5 @@
 .page-section.section-certificates {
-  background-color: #1a1a1a;
+  background-color: var(--surface);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
 
 .certificates-content {
   width: 100%;
-  max-width: 1000px;
+  max-width: var(--content-width);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(to right, #a855f7, #ec4899);
+  background: linear-gradient(to right, var(--accent-1), var(--accent-2));
   border-radius: 2px;
 }
 
@@ -45,55 +45,177 @@
   margin: var(--space-6) 0 var(--space-12);
 }
 
-.certificates-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+/* ====================================================================== */
+/*  Filmstrip                                                             */
+/*  The certificates read as frames on a reel: a dark film base with       */
+/*  punched perforations along both edges, frames scrolling between them.  */
+/* ====================================================================== */
+.filmstrip {
+  position: relative;
   width: 100%;
+  background-color: #0b0b0b;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 26px 0;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9), 0 10px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
-.certificate-card {
-  background-color: #2a2a2a;
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding: 1.75rem 1.5rem;
+/* Sprocket holes, punched through to the page colour behind the film. */
+.filmstrip-perforations {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 26px;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0 10px,
+    var(--surface) 10px 24px,
+    transparent 24px 34px
+  );
+  background-size: 34px 12px;
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.85;
+}
+
+.filmstrip-perforations-top {
+  top: 0;
+  border-bottom: 1px solid #000;
+}
+
+.filmstrip-perforations-bottom {
+  bottom: 0;
+  border-top: 1px solid #000;
+}
+
+/* --- The reel itself ---------------------------------------------------- */
+.filmstrip-track {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.filmstrip-track::-webkit-scrollbar {
+  display: none;
+}
+
+.film-frame {
+  flex: 0 0 clamp(220px, 26vw, 280px);
+  scroll-snap-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
   text-align: left;
-  gap: 1.25rem;
-  min-height: 190px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  min-height: 210px;
+  padding: var(--space-6);
+  background-color: #171717;
+  border: 1px solid #2b2b2b;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
-.certificate-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+.film-frame:hover {
+  border-color: var(--accent-1);
+  background-color: #1c1c1c;
+  transform: translateY(-3px);
 }
 
-.certificate-name {
-  font-size: 1.1rem;
-  line-height: 1.4;
-  color: #f0f0f0;
-  margin: 0;
+.film-frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px dashed #2f2f2f;
 }
 
-.certificate-view-button {
-  text-decoration: none;
-  font-size: 0.9rem;
-  padding: 0.6rem 1.1rem;
+.film-frame-index {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent-2);
+}
+
+.film-frame-kind {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: #6f6f6f;
+}
+
+.film-frame-title {
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: var(--text);
+  margin: 0 0 var(--space-6);
+}
+
+.film-frame-link {
+  margin-top: auto;
   align-self: flex-start;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #3a3a3a;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.film-frame:hover .film-frame-link {
+  color: var(--text);
+  border-bottom-color: var(--accent-1);
+}
+
+/* --- Controls ----------------------------------------------------------- */
+.filmstrip-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.filmstrip-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background-color: var(--surface-raised);
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filmstrip-button:hover {
+  border-color: var(--accent-1);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.filmstrip-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #7a7a7a;
+  text-transform: uppercase;
+}
+
+/* The reel drifts on its own only where motion is welcome; everywhere else
+   it stays put and the controls do the work. */
+@media (prefers-reduced-motion: no-preference) {
+  .filmstrip-track {
+    scroll-behavior: smooth;
+  }
 }
 
 @media (max-width: 768px) {
-  .certificates-title {
-    font-size: 2.5rem;
-    margin-top: 30px;
-  }
-
-  .certificates-grid {
-    grid-template-columns: 1fr;
+  .film-frame {
+    flex-basis: 240px;
   }
 }

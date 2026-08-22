@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './Certificates.css';
 
 const certificatesList = [
@@ -25,6 +25,16 @@ const certificatesList = [
 ];
 
 const Certificates = () => {
+  const trackRef = useRef(null);
+
+  const scrollBy = (direction) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const frame = track.querySelector('.film-frame');
+    const step = frame ? frame.getBoundingClientRect().width + 24 : 300;
+    track.scrollBy({ left: step * direction, behavior: 'smooth' });
+  };
+
   return (
     <div className="page-section section-certificates">
       <div className="certificates-content">
@@ -33,20 +43,54 @@ const Certificates = () => {
           Certifications completed alongside my degree.
         </p>
 
-        <div className="certificates-grid">
-          {certificatesList.map((cert) => (
-            <div key={cert.id} className="certificate-card">
-              <h3 className="certificate-name">{cert.title}</h3>
-              <a
-                href={cert.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary certificate-view-button"
-              >
-                View Certificate
-              </a>
-            </div>
-          ))}
+        <div className="filmstrip">
+          <div className="filmstrip-perforations filmstrip-perforations-top" aria-hidden="true" />
+
+          <div className="filmstrip-track" ref={trackRef}>
+            {certificatesList.map((cert, i) => (
+              <article className="film-frame" key={cert.id}>
+                <div className="film-frame-header">
+                  <span className="film-frame-index">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="film-frame-kind">CERTIFICATE</span>
+                </div>
+
+                <h3 className="film-frame-title">{cert.title}</h3>
+
+                <a
+                  href={cert.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="film-frame-link"
+                >
+                  View certificate
+                </a>
+              </article>
+            ))}
+          </div>
+
+          <div className="filmstrip-perforations filmstrip-perforations-bottom" aria-hidden="true" />
+        </div>
+
+        <div className="filmstrip-controls">
+          <button
+            type="button"
+            className="filmstrip-button"
+            onClick={() => scrollBy(-1)}
+            aria-label="Previous certificate"
+          >
+            ←
+          </button>
+          <span className="filmstrip-counter">{certificatesList.length} frames</span>
+          <button
+            type="button"
+            className="filmstrip-button"
+            onClick={() => scrollBy(1)}
+            aria-label="Next certificate"
+          >
+            →
+          </button>
         </div>
       </div>
     </div>
