@@ -1,0 +1,210 @@
+.page-section.section-detail {
+  background-color: var(--surface);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.detail-content {
+  width: 100%;
+  max-width: 760px;
+  text-align: left;
+}
+
+.detail-back {
+  display: inline-block;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  margin-bottom: var(--space-8);
+  transition: color 0.25s ease;
+}
+
+.detail-back:hover {
+  color: var(--accent-1);
+}
+
+.detail-context {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+  margin-bottom: var(--space-3);
+}
+
+.detail-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.12;
+  color: var(--text);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+.detail-lead {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-8);
+  text-wrap: pretty;
+}
+
+/* --- Meta strip -------------------------------------------------------- */
+.detail-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface-raised);
+  margin-bottom: var(--space-8);
+}
+
+.detail-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.detail-meta-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.detail-meta-value {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.detail-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-16);
+}
+
+.detail-actions .btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --- Content blocks ---------------------------------------------------- */
+.detail-block {
+  margin-bottom: var(--space-16);
+}
+
+.detail-heading {
+  font-size: 1.45rem;
+  color: var(--text);
+  margin: 0 0 var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-body {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: #c4c4c4;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.detail-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  counter-reset: step;
+}
+
+.detail-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.detail-step-index {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-1);
+  padding-top: 0.2rem;
+}
+
+.detail-step-text {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #c4c4c4;
+}
+
+.detail-outcomes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.detail-outcomes li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #c4c4c4;
+}
+
+.detail-outcomes li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(to right, var(--accent-1), var(--accent-2));
+}
+
+.detail-quote {
+  margin: 0;
+  padding: var(--space-6);
+  border-left: 3px solid var(--accent-1);
+  background-color: var(--surface-raised);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #d4d4d4;
+}
+
+.detail-note {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #8a8a8a;
+  padding: var(--space-4) var(--space-6);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  margin: 0 0 var(--space-12);
+}
+
+.detail-back-cta {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .detail-actions {
+    margin-bottom: var(--space-12);
+  }
+
+  .detail-block {
+    margin-bottom: var(--space-12);
+  }
+}

@@ -816,3 +816,19 @@
     padding-top: 9rem;
   }
 }
+
+/* ====================================================================== */
+/*  Fixed-nav clearance: inner pages were rendering their heading behind   */
+/*  the navbar. Every non-hero first section clears the real nav height.   */
+/* ====================================================================== */
+.page-section.section-projects,
+.page-section.section-experience,
+.page-section.section-skills,
+.page-section.section-contact,
+.page-section.section-detail {
+  padding-top: calc(var(--nav-h) + var(--space-12));
+}
+
+.page-section.section-hero {
+  padding-top: calc(var(--nav-h) + var(--space-8));
+}

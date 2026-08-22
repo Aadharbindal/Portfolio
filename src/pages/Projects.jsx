@@ -10,7 +10,7 @@ const Projects = () => {
       <div className="projects-grid">
         {projects.map((project, index) => (
           <div key={index} className="project-card-animated">
-            <ProjectCard {...project} />
+            <ProjectCard {...project} description={project.summary} />
           </div>
         ))}
       </div>

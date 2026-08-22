@@ -15,7 +15,7 @@ const FeaturedProjects = () => {
       <div className="projects-grid">
         {featured.map((project, index) => (
           <div key={index} className="project-card-animated">
-            <ProjectCard {...project} />
+            <ProjectCard {...project} description={project.summary} />
           </div>
         ))}
       </div>

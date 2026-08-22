@@ -1,9 +1,10 @@
-import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, useLocation, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './pages/Hero';
 import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
 import Skills from './pages/Skills';
 import Certificates from './pages/Certificates';
@@ -30,6 +31,19 @@ const Layout = ({ children }) => (
   </div>
 );
 
+const NotFound = () => (
+  <div className="page-section section-detail">
+    <div className="detail-content notfound-content">
+      <span className="detail-context">404</span>
+      <h1 className="detail-title">This page doesn't exist</h1>
+      <p className="detail-lead">
+        The link may be out of date, or the page may have been renamed.
+      </p>
+      <Link to="/" className="btn btn-primary detail-back-cta">Back to home</Link>
+    </div>
+  </div>
+);
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +60,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <Projects />
+      </Layout>
+    ),
+  },
+  {
+    path: "/projects/:slug",
+    element: (
+      <Layout>
+        <ProjectDetail />
       </Layout>
     ),
   },
@@ -70,6 +92,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <Contact />
+      </Layout>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <Layout>
+        <NotFound />
       </Layout>
     ),
   },
