@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import './Certificates.css';
 
 const certificatesList = [
@@ -24,16 +24,29 @@ const certificatesList = [
   },
 ];
 
-const Certificates = () => {
-  const trackRef = useRef(null);
+const Frame = ({ cert, index, clone }) => (
+  <article className="film-frame" {...(clone ? { 'aria-hidden': 'true' } : {})}>
+    <div className="film-frame-header">
+      <span className="film-frame-index">{String(index + 1).padStart(2, '0')}</span>
+      <span className="film-frame-kind">CERTIFICATE</span>
+    </div>
 
-  const scrollBy = (direction) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const frame = track.querySelector('.film-frame');
-    const step = frame ? frame.getBoundingClientRect().width + 24 : 300;
-    track.scrollBy({ left: step * direction, behavior: 'smooth' });
-  };
+    <h3 className="film-frame-title">{cert.title}</h3>
+
+    <a
+      href={cert.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="film-frame-link"
+      tabIndex={clone ? -1 : undefined}
+    >
+      View certificate
+    </a>
+  </article>
+);
+
+const Certificates = () => {
+  const [paused, setPaused] = useState(false);
 
   return (
     <div className="page-section section-certificates">
@@ -46,28 +59,22 @@ const Certificates = () => {
         <div className="filmstrip">
           <div className="filmstrip-perforations filmstrip-perforations-top" aria-hidden="true" />
 
-          <div className="filmstrip-track" ref={trackRef}>
-            {certificatesList.map((cert, i) => (
-              <article className="film-frame" key={cert.id}>
-                <div className="film-frame-header">
-                  <span className="film-frame-index">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="film-frame-kind">CERTIFICATE</span>
-                </div>
-
-                <h3 className="film-frame-title">{cert.title}</h3>
-
-                <a
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="film-frame-link"
-                >
-                  View certificate
-                </a>
-              </article>
-            ))}
+          <div className="filmstrip-viewport">
+            {/* The reel holds two identical runs of frames. Sliding it by
+                exactly half its width lands the copy where the original was,
+                so the loop never shows a seam. */}
+            <div className={`filmstrip-reel${paused ? ' is-paused' : ''}`}>
+              <div className="filmstrip-run">
+                {certificatesList.map((cert, i) => (
+                  <Frame cert={cert} index={i} key={cert.id} />
+                ))}
+              </div>
+              <div className="filmstrip-run">
+                {certificatesList.map((cert, i) => (
+                  <Frame cert={cert} index={i} key={`clone-${cert.id}`} clone />
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="filmstrip-perforations filmstrip-perforations-bottom" aria-hidden="true" />
@@ -77,20 +84,14 @@ const Certificates = () => {
           <button
             type="button"
             className="filmstrip-button"
-            onClick={() => scrollBy(-1)}
-            aria-label="Previous certificate"
+            onClick={() => setPaused((p) => !p)}
+            aria-pressed={paused}
           >
-            ←
+            {paused ? '▶' : '❚❚'}
           </button>
-          <span className="filmstrip-counter">{certificatesList.length} frames</span>
-          <button
-            type="button"
-            className="filmstrip-button"
-            onClick={() => scrollBy(1)}
-            aria-label="Next certificate"
-          >
-            →
-          </button>
+          <span className="filmstrip-counter">
+            {certificatesList.length} frames · {paused ? 'paused' : 'rolling'}
+          </span>
         </div>
       </div>
     </div>
