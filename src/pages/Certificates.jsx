@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Certificates.css';
 
 const certificatesList = [
@@ -24,6 +24,8 @@ const certificatesList = [
   },
 ];
 
+const SPEED = 34; // pixels per second
+
 const Frame = ({ cert, index, clone }) => (
   <article className="film-frame" {...(clone ? { 'aria-hidden': 'true' } : {})}>
     <div className="film-frame-header">
@@ -39,6 +41,7 @@ const Frame = ({ cert, index, clone }) => (
       rel="noopener noreferrer"
       className="film-frame-link"
       tabIndex={clone ? -1 : undefined}
+      draggable="false"
     >
       View certificate
     </a>
@@ -46,7 +49,80 @@ const Frame = ({ cert, index, clone }) => (
 );
 
 const Certificates = () => {
-  const [paused, setPaused] = useState(false);
+  const viewportRef = useRef(null);
+  const runRef = useRef(null);
+
+  // Held in refs so the animation loop reads them without restarting.
+  const hoveringRef = useRef(false);
+  const draggingRef = useRef(false);
+  const idleUntilRef = useRef(0);
+
+  // Rewind by exactly one run once the reel passes it, in either direction.
+  // Called from the roll loop and from manual scrolling alike, so dragging
+  // past the end wraps the same way the roll does.
+  const wrap = () => {
+    const el = viewportRef.current;
+    const runWidth = runRef.current ? runRef.current.offsetWidth : 0;
+    if (!el || !runWidth) return;
+    if (el.scrollLeft >= runWidth) el.scrollLeft -= runWidth;
+    else if (el.scrollLeft <= 0) el.scrollLeft += runWidth;
+  };
+
+  // The reel advances by moving scrollLeft, so a visitor can scroll, drag or
+  // step through it at any time and the roll simply carries on from there.
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return undefined;
+
+    let frame;
+    let last = performance.now();
+
+    const tick = (now) => {
+      const dt = (now - last) / 1000;
+      last = now;
+
+      const held = hoveringRef.current || draggingRef.current || now < idleUntilRef.current;
+      if (!held) el.scrollLeft += SPEED * dt;
+      wrap();
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // Manual scrolling or dragging holds the roll briefly, then it resumes.
+  const holdBriefly = () => {
+    idleUntilRef.current = performance.now() + 1500;
+  };
+
+  const onPointerDown = (e) => {
+    const el = viewportRef.current;
+    draggingRef.current = { startX: e.clientX, startScroll: el.scrollLeft, moved: false };
+    el.setPointerCapture?.(e.pointerId);
+    el.classList.add('is-dragging');
+  };
+
+  const onPointerMove = (e) => {
+    const drag = draggingRef.current;
+    if (!drag) return;
+    const dx = e.clientX - drag.startX;
+    if (Math.abs(dx) > 3) drag.moved = true;
+    viewportRef.current.scrollLeft = drag.startScroll - dx;
+  };
+
+  const endDrag = (e) => {
+    const el = viewportRef.current;
+    if (!draggingRef.current) return;
+    // A drag shouldn't also trigger the link underneath it.
+    if (draggingRef.current.moved) {
+      e.preventDefault?.();
+    }
+    draggingRef.current = false;
+    el.classList.remove('is-dragging');
+    holdBriefly();
+  };
 
   return (
     <div className="page-section section-certificates">
@@ -59,12 +135,23 @@ const Certificates = () => {
         <div className="filmstrip">
           <div className="filmstrip-perforations filmstrip-perforations-top" aria-hidden="true" />
 
-          <div className="filmstrip-viewport">
-            {/* The reel holds two identical runs of frames. Sliding it by
-                exactly half its width lands the copy where the original was,
-                so the loop never shows a seam. */}
-            <div className={`filmstrip-reel${paused ? ' is-paused' : ''}`}>
-              <div className="filmstrip-run">
+          <div
+            className="filmstrip-viewport"
+            ref={viewportRef}
+            onMouseEnter={() => { hoveringRef.current = true; }}
+            onMouseLeave={() => { hoveringRef.current = false; endDrag({}); }}
+            onScroll={wrap}
+            onWheel={holdBriefly}
+            onTouchStart={holdBriefly}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+          >
+            {/* Two identical runs: when the reel passes the width of one run,
+                scrollLeft rewinds by exactly that much, so the loop is seamless. */}
+            <div className="filmstrip-reel">
+              <div className="filmstrip-run" ref={runRef}>
                 {certificatesList.map((cert, i) => (
                   <Frame cert={cert} index={i} key={cert.id} />
                 ))}
@@ -80,19 +167,6 @@ const Certificates = () => {
           <div className="filmstrip-perforations filmstrip-perforations-bottom" aria-hidden="true" />
         </div>
 
-        <div className="filmstrip-controls">
-          <button
-            type="button"
-            className="filmstrip-button"
-            onClick={() => setPaused((p) => !p)}
-            aria-pressed={paused}
-          >
-            {paused ? '▶' : '❚❚'}
-          </button>
-          <span className="filmstrip-counter">
-            {certificatesList.length} frames · {paused ? 'paused' : 'rolling'}
-          </span>
-        </div>
       </div>
     </div>
   );

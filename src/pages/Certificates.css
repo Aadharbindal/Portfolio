@@ -91,14 +91,31 @@
 
 /* --- The reel itself ---------------------------------------------------- */
 .filmstrip-viewport {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: var(--space-6) 0;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+}
+
+.filmstrip-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.filmstrip-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.filmstrip-viewport.is-dragging .film-frame {
+  user-select: none;
 }
 
 .filmstrip-reel {
   display: flex;
   width: max-content;
-  animation: reel-roll 36s linear infinite;
 }
 
 .filmstrip-run {
@@ -120,18 +137,6 @@
   border-radius: 2px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
   transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-@keyframes reel-roll {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
-}
-
-/* Stop for anyone reading a frame, and for the pause control. */
-.filmstrip:hover .filmstrip-reel,
-.filmstrip:focus-within .filmstrip-reel,
-.filmstrip-reel.is-paused {
-  animation-play-state: paused;
 }
 
 .film-frame:hover {
@@ -186,47 +191,9 @@
   border-bottom-color: var(--accent-1);
 }
 
-/* --- Controls ----------------------------------------------------------- */
-.filmstrip-controls {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  margin-top: var(--space-8);
-}
-
-.filmstrip-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background-color: var(--surface-raised);
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.filmstrip-button:hover {
-  border-color: var(--accent-1);
-  color: var(--text);
-  transform: translateY(-2px);
-}
-
-.filmstrip-counter {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: #7a7a7a;
-  text-transform: uppercase;
-}
-
 @media (max-width: 768px) {
   .film-frame {
     flex-basis: 240px;
   }
 
-  .filmstrip-reel {
-    animation-duration: 26s;
-  }
 }
