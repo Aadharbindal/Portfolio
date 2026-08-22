@@ -1,12 +1,53 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal developer portfolio — a single-page React application presenting my background, skills, projects and certificates.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Animated hero section** built with Framer Motion, with a downloadable résumé
+- **Skills grid** split across frontend, backend, languages and tooling
+- **Projects showcase** driven by a reusable `ProjectCard` component
+- **Certificates gallery**
+- **Client-side routing** via React Router
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Layer | Choice |
+| --- | --- |
+| Framework | React 19 |
+| Build tool | Vite 7 (SWC plugin) |
+| Animation | Framer Motion |
+| Routing | React Router 7 |
+| Linting | ESLint 9 |
+
+## Project Structure
+
+```
+src/
+├── components/     Navbar, ProjectCard
+├── pages/          Hero, Skills, Projects, Certificates, Contact
+├── assets/         Profile image, certificates, project thumbnails
+└── App.jsx         Route definitions
+public/
+└── resume.pdf      Served as a direct download
+```
+
+## Running Locally
+
+Requires Node.js 18 or newer.
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server starts on `http://localhost:5173`.
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+The production bundle is written to `dist/`.
