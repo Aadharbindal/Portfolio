@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { EASE } from '../components/Reveal';
 import './Experience.css';
 
 const experience = [
@@ -45,8 +47,30 @@ const Timeline = ({ items }) => (
   <div className="timeline">
     {items.map((item, i) => (
       <div className="timeline-item" key={i}>
-        <div className="timeline-marker" />
-        <div className="timeline-card">
+        {/* The rail draws downward, then the dot lands, then the card
+            slides in — each entry a beat after the one above it. */}
+        <motion.span
+          className="timeline-rail"
+          aria-hidden="true"
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, delay: i * 0.18, ease: 'easeInOut' }}
+        />
+        <motion.span
+          className="timeline-marker"
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, delay: i * 0.18 + 0.25, ease: 'backOut' }}
+        />
+        <motion.div
+          className="timeline-card"
+          initial={{ opacity: 0, x: 26 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, delay: i * 0.18 + 0.15, ease: EASE }}
+        >
           <div className="timeline-head">
             <h3 className="timeline-role">{item.role}</h3>
             <span className="timeline-period">{item.period}</span>
@@ -60,7 +84,7 @@ const Timeline = ({ items }) => (
               <li key={j}>{p}</li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </div>
     ))}
   </div>

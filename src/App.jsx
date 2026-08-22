@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider, useLocation, Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { EASE } from './components/Reveal';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './pages/Hero';
@@ -22,14 +24,26 @@ function ScrollToTop() {
   return null;
 }
 
-const Layout = ({ children }) => (
-  <div className="app">
-    <ScrollToTop />
-    <Navbar />
-    {children}
-    <Footer />
-  </div>
-);
+// Re-keying on the path replays the entrance every time the route changes,
+// so a page eases in rather than snapping into place.
+const Layout = ({ children }) => {
+  const { pathname } = useLocation();
+  return (
+    <div className="app">
+      <ScrollToTop />
+      <Navbar />
+      <motion.main
+        key={pathname}
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: EASE }}
+      >
+        {children}
+      </motion.main>
+      <Footer />
+    </div>
+  );
+};
 
 const NotFound = () => (
   <div className="page-section section-detail">

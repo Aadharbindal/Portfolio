@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProjectCard from './ProjectCard';
+import Reveal from './Reveal';
 import projects from '../data/projects';
 
 const FeaturedProjects = () => {
@@ -14,9 +15,9 @@ const FeaturedProjects = () => {
       </p>
       <div className="projects-grid">
         {featured.map((project, index) => (
-          <div key={index} className="project-card-animated">
+          <Reveal key={index} className="project-card-animated" delay={index * 0.08}>
             <ProjectCard {...project} description={project.summary} />
-          </div>
+          </Reveal>
         ))}
       </div>
       <Link to="/projects" className="btn btn-secondary featured-cta">

@@ -1,5 +1,6 @@
 import React from 'react';
 import ProjectCard from '../components/ProjectCard';
+import Reveal from '../components/Reveal';
 import projects from '../data/projects';
 import '../App.css';
 
@@ -9,9 +10,9 @@ const Projects = () => {
       <h1 className="projects-title">MY PROJECTS</h1>
       <div className="projects-grid">
         {projects.map((project, index) => (
-          <div key={index} className="project-card-animated">
+          <Reveal key={index} className="project-card-animated" delay={index * 0.08}>
             <ProjectCard {...project} description={project.summary} />
-          </div>
+          </Reveal>
         ))}
       </div>
     </div>
