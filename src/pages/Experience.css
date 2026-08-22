@@ -45,34 +45,69 @@
 
 .timeline {
   width: 100%;
-  border-left: 2px solid #333;
-  padding-left: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
+/* Rail and dot live in a fixed 26px column, so the dot is centred on the
+   line by construction rather than by a negative offset. */
 .timeline-item {
   position: relative;
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  column-gap: var(--space-6);
+  padding-bottom: var(--space-8);
   opacity: 0;
   animation: fadeIn 0.6s ease-out forwards;
 }
 
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+/* The rail starts and ends on a dot instead of dangling past the cards. */
+.timeline-item:first-child::before {
+  top: 22px;
+}
+
+.timeline-item:last-child::before {
+  bottom: auto;
+  height: 22px;
+}
+
 .timeline-marker {
   position: absolute;
-  left: -2.65rem;
-  top: 1.6rem;
-  width: 13px;
-  height: 13px;
+  left: 6px;
+  top: 15px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: linear-gradient(to right, #a855f7, #ec4899);
-  border: 3px solid #1a1a1a;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--border);
+  z-index: 1;
+}
+
+/* Most recent entry reads as the live one. */
+.timeline-item:first-child .timeline-marker {
+  box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--accent-1),
+    0 0 14px rgba(168, 85, 247, 0.55);
 }
 
 .timeline-card {
-  background-color: #2a2a2a;
-  border: 1px solid #333;
-  border-radius: 10px;
+  grid-column: 2;
+  background-color: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 1.5rem;
   text-align: left;
   transition: all 0.3s ease;
@@ -144,11 +179,16 @@
     margin-top: 30px;
   }
 
-  .timeline {
-    padding-left: 1.25rem;
+  .timeline-item {
+    grid-template-columns: 22px 1fr;
+    column-gap: var(--space-4);
+  }
+
+  .timeline-item::before {
+    left: 10px;
   }
 
   .timeline-marker {
-    left: -1.9rem;
+    left: 4px;
   }
 }
