@@ -3,6 +3,7 @@
 const projects = [
   {
     slug: 'cxl-qemu-emulation',
+    label: 'HPE Internship',
     title: 'CXL Enablement with QEMU-based Emulation',
     summary:
       'A QEMU-based virtualized CXL testbed that emulates Compute Express Link devices for system-level validation, letting experimental Linux kernel drivers be configured and tested without physical CXL hardware.',
@@ -32,6 +33,7 @@ const projects = [
   },
   {
     slug: 'numerate-os',
+    label: 'Personal project',
     title: 'Numerate OS — Data Analytics Platform',
     summary:
       'A full-stack analytics workspace where you upload a dataset and query it for on-demand insights, backed by authenticated REST APIs.',
@@ -60,12 +62,13 @@ const projects = [
   },
   {
     slug: 'house-price-prediction',
+    label: 'Personal project',
     title: 'House Price Prediction',
     summary:
       'Property valuation across 20 Indian cities, driven by a Gradient Boosting model at an R² of 0.948 and served through a REST API.',
     description:
       'Property valuation across 20 Indian cities using a Gradient Boosting Regressor at an R² of 0.948, served through a Node.js and Express REST API with an interactive dashboard.',
-    tech: ['Node.js', 'Express', 'scikit-learn', 'Python'],
+    tech: ['Node.js', 'Express', 'sklearn', 'Python'],
     projectUrl: 'https://github.com/Aadharbindal/House_Price_Prediction',
     liveUrl: 'https://house-price-prediction-w1j9.onrender.com',
     featured: true,
@@ -89,12 +92,13 @@ const projects = [
   },
   {
     slug: 'rockfall-prediction',
+    label: 'Team project',
     title: 'Rockfall Prediction (AI/ML)',
     summary:
       'An AI-driven model that predicts rockfall risk on open-pit mine slopes from geological data, so hazards are caught before they happen.',
     description:
       'An AI-driven rockfall prediction model trained on geological datasets, using data preprocessing and model optimisation to improve accuracy on high-risk events and enable proactive site safety.',
-    tech: ['Python', 'Machine Learning', 'JavaScript'],
+    tech: ['Python', 'ML', 'JavaScript'],
     projectUrl: 'https://github.com/Aadharbindal/AI-Rockfall-Prediction-System',
     context: 'Team project',
     problem:
@@ -113,6 +117,7 @@ const projects = [
   },
   {
     slug: 'industrial-control-dashboard',
+    label: 'Interface concept',
     title: 'Industrial Control Dashboard',
     summary:
       'A dense, real-time operator console for an industrial control system — the kind of screen that sits on a plant floor for a full shift.',
@@ -140,6 +145,7 @@ const projects = [
   },
   {
     slug: 'dsa-cpp',
+    label: 'Ongoing practice',
     title: 'DSA in C++',
     summary:
       'Data structures and algorithms in C++, worked through topic by topic — from language fundamentals to recursion and backtracking.',

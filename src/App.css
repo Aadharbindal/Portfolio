@@ -830,3 +830,12 @@
 .page-section.section-hero {
   padding-top: calc(var(--nav-h) + var(--space-8));
 }
+
+/* Grid children must stretch for the cards' height:100% to equalise them. */
+.project-card-animated {
+  height: 100%;
+}
+
+.projects-grid {
+  align-items: stretch;
+}
