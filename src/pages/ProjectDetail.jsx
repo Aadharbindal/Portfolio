@@ -26,7 +26,10 @@ const ProjectDetail = () => {
   return (
     <div className="page-section section-detail">
       <article className="detail-content">
-        <Link to="/projects" className="detail-back">← All projects</Link>
+        <Link to="/projects" className="detail-back">
+          <span className="detail-back-arrow" aria-hidden="true">←</span>
+          All projects
+        </Link>
 
         {project.context && <span className="detail-context">{project.context}</span>}
 

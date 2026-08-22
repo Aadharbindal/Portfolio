@@ -12,21 +12,29 @@
 }
 
 .detail-back {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   margin-bottom: var(--space-8);
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, gap 0.25s ease;
 }
 
 .detail-back:hover {
   color: var(--accent-1);
+  gap: 0.7rem;
+}
+
+.detail-back-arrow {
+  line-height: 1;
 }
 
 .detail-context {
-  display: inline-block;
-  font-size: 0.78rem;
+  display: block;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-1);
