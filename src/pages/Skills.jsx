@@ -1,98 +1,99 @@
 import React from 'react';
 import './Skills.css';
 
+const icon = (i) => `https://skillicons.dev/icons?i=${i}`;
+
+const categories = [
+  {
+    title: 'Languages',
+    items: [
+      { name: 'C++', icon: icon('cpp') },
+      { name: 'C', icon: icon('c') },
+      { name: 'Python', icon: icon('python') },
+      { name: 'JavaScript', icon: icon('js') },
+    ],
+  },
+  {
+    title: 'Web Development',
+    items: [
+      { name: 'React', icon: icon('react') },
+      { name: 'Node.js', icon: icon('nodejs') },
+      { name: 'Express', icon: icon('express') },
+      { name: 'Tailwind', icon: icon('tailwind') },
+      { name: 'HTML', icon: icon('html') },
+      { name: 'CSS', icon: icon('css') },
+    ],
+  },
+  {
+    title: 'Systems & Databases',
+    items: [
+      { name: 'Linux', icon: icon('linux') },
+      { name: 'Bash', icon: icon('bash') },
+      { name: 'MySQL', icon: icon('mysql') },
+      { name: 'MongoDB', icon: icon('mongodb') },
+    ],
+  },
+  {
+    title: 'Tools',
+    items: [
+      { name: 'Git', icon: icon('git') },
+      { name: 'GitHub', icon: icon('github') },
+      { name: 'Postman', icon: icon('postman') },
+      { name: 'VS Code', icon: icon('vscode') },
+    ],
+  },
+];
+
+const coreDomains = [
+  'Data Structures & Algorithms',
+  'Object-Oriented Programming',
+  'Database Management Systems',
+  'Computer Networks',
+  'QEMU / CXL Emulation',
+  'REST APIs',
+];
+
 const Skills = () => {
-  const languages = [
-    { name: "C++", icon: "https://skillicons.dev/icons?i=cpp" },
-    { name: "C", icon: "https://skillicons.dev/icons?i=c" },
-    { name: "Python", icon: "https://skillicons.dev/icons?i=python" },
-    { name: "JavaScript", icon: "https://skillicons.dev/icons?i=js" },
-  ];
-
-  const webDevelopment = [
-    { name: "React", icon: "https://skillicons.dev/icons?i=react" },
-    { name: "Node JS", icon: "https://skillicons.dev/icons?i=nodejs" },
-    { name: "Express JS", icon: "https://skillicons.dev/icons?i=express" },
-    { name: "Tailwind CSS", icon: "https://skillicons.dev/icons?i=tailwind" },
-    { name: "HTML", icon: "https://skillicons.dev/icons?i=html" },
-    { name: "CSS", icon: "https://skillicons.dev/icons?i=css" },
-  ];
-
-  const systemsAndData = [
-    { name: "Linux", icon: "https://skillicons.dev/icons?i=linux" },
-    { name: "Bash", icon: "https://skillicons.dev/icons?i=bash" },
-    { name: "MySQL", icon: "https://skillicons.dev/icons?i=mysql" },
-    { name: "MongoDB", icon: "https://skillicons.dev/icons?i=mongodb" },
-  ];
-
-  const tools = [
-    { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
-    { name: "GitHub", icon: "https://skillicons.dev/icons?i=github" },
-    { name: "Postman", icon: "https://skillicons.dev/icons?i=postman" },
-    { name: "VS Code", icon: "https://skillicons.dev/icons?i=vscode" },
-  ];
-
-  const coreDomains = [
-    "Data Structures & Algorithms",
-    "Object-Oriented Programming",
-    "Database Management Systems",
-    "Computer Networks",
-    "QEMU / CXL Emulation",
-    "REST APIs",
-  ];
-
-  const renderGrid = (items) => (
-    <div className="skills-grid">
-      {items.map((skill, index) => (
-        <div key={index} className="skill-item">
-          <img src={skill.icon} alt={skill.name} />
-          <span>{skill.name}</span>
-        </div>
-      ))}
-    </div>
-  );
-
   return (
     <div className="page-section section-skills">
       <div className="skills-container">
         <h1 className="skills-title">SKILLS</h1>
         <p className="skills-description">
-          The tools and technologies I work with day to day, across web development and low-level systems.
+          The tools and technologies I work with day to day, across web development and
+          low-level systems.
         </p>
 
-        <div className="skill-category-wrapper">
-          <div className="skill-category-card">
-            <h2 className="category-title">Languages</h2>
-            {renderGrid(languages)}
-          </div>
+        <div className="skills-layout">
+          {categories.map((cat) => (
+            <section className="skill-category-card" key={cat.title}>
+              <header className="skill-category-header">
+                <h2 className="category-title">{cat.title}</h2>
+                <span className="category-count">{cat.items.length}</span>
+              </header>
 
-          <div className="skill-category-card">
-            <h2 className="category-title">Web Development</h2>
-            {renderGrid(webDevelopment)}
-          </div>
-        </div>
+              <div className="skills-grid">
+                {cat.items.map((skill) => (
+                  <div className="skill-item" key={skill.name}>
+                    <img src={skill.icon} alt="" loading="lazy" width="20" height="20" />
+                    <span>{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
 
-        <div className="skill-category-wrapper">
-          <div className="skill-category-card">
-            <h2 className="category-title">Systems &amp; Databases</h2>
-            {renderGrid(systemsAndData)}
-          </div>
+          <section className="skill-category-card skill-category-card-wide">
+            <header className="skill-category-header">
+              <h2 className="category-title">Core Domains</h2>
+              <span className="category-count">{coreDomains.length}</span>
+            </header>
 
-          <div className="skill-category-card">
-            <h2 className="category-title">Tools</h2>
-            {renderGrid(tools)}
-          </div>
-        </div>
-
-        <div className="skill-category-wrapper">
-          <div className="skill-category-card skill-category-card-wide">
-            <h2 className="category-title">Core Domains</h2>
             <div className="skill-chip-grid">
-              {coreDomains.map((domain, index) => (
-                <span key={index} className="skill-chip">{domain}</span>
+              {coreDomains.map((domain) => (
+                <span className="skill-chip" key={domain}>{domain}</span>
               ))}
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>
