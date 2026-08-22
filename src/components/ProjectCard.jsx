@@ -8,6 +8,7 @@ const ProjectCard = ({ title, description, projectUrl, imageUrl }) => {
     >
       {imageUrl && <img src={imageUrl} alt={title} className="project-card-image" />}
       <h3>{title}</h3>
+      {description && <p className="project-card-description">{description}</p>}
       {projectUrl && (
         <a
           href={projectUrl}
