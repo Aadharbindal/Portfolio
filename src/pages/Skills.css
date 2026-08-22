@@ -168,3 +168,17 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* The reveal wrapper becomes the grid item, so it has to carry the span and
+   let the card fill it — otherwise cards in a row stop matching heights. */
+.skill-card-slot {
+  display: flex;
+}
+
+.skill-card-slot > .skill-category-card {
+  width: 100%;
+}
+
+.skill-card-slot-wide {
+  grid-column: 1 / -1;
+}

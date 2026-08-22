@@ -175,3 +175,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* The reveal wrappers stand in as the grid items, so they have to pass their
+   sizing through to the panel and form inside. */
+.contact-slot {
+  display: flex;
+}
+
+.contact-slot > .contact-aside,
+.contact-slot > .contact-form {
+  width: 100%;
+}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import Reveal, { EASE } from '../components/Reveal';
 import '../App.css';
 import './Contact.css';
 
@@ -26,6 +28,17 @@ const channels = [
   },
 ];
 
+// Channels drop in one after the other once the panel has landed.
+const listVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.2 } },
+};
+
+const rowVariants = {
+  hidden: { opacity: 0, x: -12 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.4, ease: EASE } },
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -45,6 +58,7 @@ const Contact = () => {
   return (
     <div className="page-section section-contact">
       <div className="contact-shell">
+        <Reveal className="contact-header-slot" y={16}>
         <header className="contact-header">
           <h1 className="contact-title">GET IN TOUCH</h1>
           <p className="contact-description">
@@ -53,13 +67,21 @@ const Contact = () => {
             in the same inbox.
           </p>
         </header>
+        </Reveal>
 
         <div className="contact-grid">
+          <Reveal className="contact-slot" delay={0.08}>
           <aside className="contact-aside">
             <h2 className="contact-aside-title">Reach me directly</h2>
-            <dl className="contact-channels">
+            <motion.dl
+              className="contact-channels"
+              variants={listVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
               {channels.map((c) => (
-                <div className="contact-channel" key={c.label}>
+                <motion.div className="contact-channel" key={c.label} variants={rowVariants}>
                   <dt className="contact-channel-label">{c.label}</dt>
                   <dd className="contact-channel-value">
                     {c.href ? (
@@ -76,16 +98,18 @@ const Contact = () => {
                       c.value
                     )}
                   </dd>
-                </div>
+                </motion.div>
               ))}
-            </dl>
+            </motion.dl>
 
             <div className="contact-availability">
               <span className="contact-availability-dot" />
               Currently open to opportunities
             </div>
           </aside>
+          </Reveal>
 
+          <Reveal className="contact-slot" delay={0.18}>
           <form
             className="contact-form"
             action="https://formspree.io/f/xnnzeyen"
@@ -148,6 +172,7 @@ const Contact = () => {
               Send message
             </button>
           </form>
+          </Reveal>
         </div>
       </div>
     </div>
