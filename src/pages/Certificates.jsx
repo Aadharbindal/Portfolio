@@ -133,7 +133,6 @@ const Certificates = () => {
         </p>
 
         <div className="filmstrip">
-          <div className="filmstrip-perforations filmstrip-perforations-top" aria-hidden="true" />
 
           <div
             className="filmstrip-viewport"
@@ -164,7 +163,6 @@ const Certificates = () => {
             </div>
           </div>
 
-          <div className="filmstrip-perforations filmstrip-perforations-bottom" aria-hidden="true" />
         </div>
 
       </div>
