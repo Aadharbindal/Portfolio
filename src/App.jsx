@@ -4,7 +4,8 @@ import Hero from './pages/Hero';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Skills from './pages/Skills';
-import Certificates from './pages/Certificates'; // Import the new Certificates component
+import Certificates from './pages/Certificates';
+import Experience from './pages/Experience';
 import './App.css'
 
 const router = createBrowserRouter([
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
       <div className="app">
         <Navbar />
         <Hero />
-        <Certificates /> {/* Add the Certificates component here */}
+        <Certificates />
       </div>
     ),
   },
@@ -24,6 +25,15 @@ const router = createBrowserRouter([
       <div className="app">
         <Navbar />
         <Projects />
+      </div>
+    ),
+  },
+  {
+    path: "/experience",
+    element: (
+      <div className="app">
+        <Navbar />
+        <Experience />
       </div>
     ),
   },

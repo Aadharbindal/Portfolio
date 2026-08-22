@@ -135,3 +135,32 @@
   width: 24px;
   height: 24px;
 }
+
+/* Core domains — text chips for skills without an icon */
+.skill-category-card-wide {
+  flex: 1 1 100%;
+}
+
+.skill-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+.skill-chip {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #3a3a3a;
+  background-color: #232323;
+  color: #d0d0d0;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.skill-chip:hover {
+  border-color: #a855f7;
+  color: #f0f0f0;
+  transform: translateY(-3px);
+}

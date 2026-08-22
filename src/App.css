@@ -515,3 +515,52 @@
   pointer-events: none;
   /* transform: translate(-50%, -50%); */
 }
+
+/* Hero secondary links */
+.hero-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards 1.4s;
+}
+
+.hero-link {
+  color: #b8b8b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.hero-link:hover {
+  color: #a855f7;
+}
+
+.hero-link-divider {
+  color: #555;
+}
+
+/* Contact direct links */
+.contact-direct {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.contact-direct-link {
+  color: #b8b8b8;
+  text-decoration: none;
+  font-size: 1rem;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.contact-direct-link:hover {
+  color: #a855f7;
+  border-bottom-color: #a855f7;
+}

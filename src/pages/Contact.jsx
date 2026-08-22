@@ -26,7 +26,29 @@ const Contact = () => {
     >
       <div className="contact-content">
         <h1 className="contact-title">CONTACT ME</h1>
-        <p className="contact-description">Feel free to reach out to me! You can connect with me via email using the form below.</p>
+        <p className="contact-description">Feel free to reach out — by email, on LinkedIn, or using the form below.</p>
+
+        <div className="contact-direct">
+          <a href="mailto:aadharbindal@gmail.com" className="contact-direct-link">
+            aadharbindal@gmail.com
+          </a>
+          <a
+            href="https://linkedin.com/in/aadhar-bindal-71222327b"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-direct-link"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/Aadharbindal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-direct-link"
+          >
+            GitHub
+          </a>
+        </div>
         
         <form className="contact-form" action="https://formspree.io/f/xnnzeyen" method="POST">
           <div className="form-group">

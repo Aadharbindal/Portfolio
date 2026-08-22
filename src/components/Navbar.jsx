@@ -28,6 +28,14 @@ const Navbar = () => {
         </li>
         <li>
           <Link
+            to="/experience"
+            className="navbar-link"
+          >
+            Experience
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/skills"
             className="navbar-link"
           >
