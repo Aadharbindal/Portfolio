@@ -25,7 +25,7 @@ const Projects = () => {
     {
       title: "Industrial Control Dashboard",
       description: "A dense, real-time operator interface for industrial control systems, built with React 19 and Vite.",
-      projectUrl: "https://github.com/Aadharbindal/ABB",
+      projectUrl: "https://github.com/Aadharbindal/industrial-control-dashboard",
       imageUrl: movie
     },
   ];
