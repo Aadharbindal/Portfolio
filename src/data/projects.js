@@ -40,7 +40,7 @@ const projects = [
     description:
       'A full-stack analytics platform built with React and Python. Exposes REST APIs with user authentication, and queries uploaded datasets to generate on-demand insights.',
     tech: ['React', 'TypeScript', 'Python', 'REST'],
-    projectUrl: 'https://github.com/Aadharbindal/Data_Analytical_Platform',
+    projectUrl: 'https://github.com/Aadharbindal/Numerate',
     liveUrl: 'https://numerate-analytics.vercel.app',
     featured: true,
     context: 'Personal project',
@@ -100,6 +100,7 @@ const projects = [
       'An AI-driven rockfall prediction model trained on geological datasets, using data preprocessing and model optimisation to improve accuracy on high-risk events and enable proactive site safety.',
     tech: ['Python', 'ML', 'JavaScript'],
     projectUrl: 'https://github.com/Aadharbindal/AI-Rockfall-Prediction-System',
+    liveUrl: 'https://ai-rockfall-prediction-system-phi.vercel.app',
     context: 'Team project',
     problem:
       'Rockfall on open-pit mine slopes threatens both workers and equipment, and monitoring is typically reactive — the hazard is recorded once it has already happened.',
@@ -114,34 +115,6 @@ const projects = [
     ],
     learned:
       'Optimising for overall accuracy is the wrong target when the rare class is the dangerous one. Tuning for high-risk recall mattered far more than the headline score.',
-  },
-  {
-    slug: 'industrial-control-dashboard',
-    label: 'Interface concept',
-    title: 'Industrial Control Dashboard',
-    summary:
-      'A dense, real-time operator console for an industrial control system — the kind of screen that sits on a plant floor for a full shift.',
-    description:
-      'A dense, real-time operator interface for industrial control systems — live telemetry panels, a facility node map and role-based login, tuned for long shifts in a control room.',
-    tech: ['React 19', 'Vite', 'Lucide'],
-    projectUrl: 'https://github.com/Aadharbindal/industrial-control-dashboard',
-    liveUrl: 'https://Aadharbindal.github.io/industrial-control-dashboard/',
-    context: 'Interface concept',
-    role: 'Sole developer',
-    problem:
-      'Control-room screens have to carry a lot of live information at once. Most dashboard designs get airy and readable by showing very little — which is the opposite of what an operator needs.',
-    approach: [
-      'Designed a dense single-view console: system core panel, live uptime and build hash, a facility map with active equipment nodes, and alert and diagnostics modules.',
-      'Built a login flow with role selection — System Engineer, Operator, Supervisor — and a simulated biometric scan step.',
-      'Tuned the dark theme and vignette treatment for readability over a long shift rather than for a screenshot.',
-    ],
-    outcome: [
-      'A working interface concept, deployed and explorable in the browser.',
-      'Live values tick in real time so the screen behaves like a real console.',
-    ],
-    learned:
-      'Information density and legibility pull against each other. Getting both meant treating type scale, spacing and colour contrast as one system rather than styling each panel on its own.',
-    note: 'This is a frontend concept — telemetry values are simulated in the browser, with no backend or live equipment feed behind it.',
   },
   {
     slug: 'dsa-cpp',
